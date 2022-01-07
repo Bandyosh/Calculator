@@ -1,55 +1,56 @@
 import java.util.*;
 
 public class zForm {
+    static Scanner scanner = new Scanner(System.in);
 
+    public static int Int(String color, String msg){
+        console.color(color, msg);
 
+        String responseString = scanner.nextLine();
 
-    public static void form(String formula, double answer){
+        int x = 0;
 
-        Scanner formScanner = new Scanner(System.in);
+        try{
+            x = Integer.parseInt(responseString);
+        } catch(NumberFormatException e){
+            console.error("Invalid Input(s)");
+            console.end();
+        }
 
-        System.out.println("\n" + ANSI.GREEN() + formula + " " + answer + ANSI.RESET() + "\n");
+        return x;
+    }
 
-        System.out.println(ANSI.YELLOW() + "Do you want to input another Formula? Y or N" + ANSI.RESET());
+    public static double Double(String color, String msg){
+       console.color(color, msg);
 
-        String inputForm = formScanner.nextLine(); //Response for Question
+        String responseString = scanner.nextLine();
 
-        if(inputForm.toUpperCase().equals("Y")){
+        double x = 0.0;
 
-            System.out.print(ANSI.ESCAPE());  //ANSI ESCAPE CODE
-
-            Start start = new Start();
-
-        } else {
-
-            return;
+        try{
+            x = Double.parseDouble(responseString);
+        } catch(NumberFormatException e){
+          console.error("Invalid Input(s)");
+          console.end();
 
         }
 
-
-
+        return x;
     }
 
-    public static void error(){
+    public static void Restart(){
+        String responseString = String(ANSI.YELLOW(), "Do you want to play the game again? Y or N");
 
-        Scanner errorScanner = new Scanner(System.in);
-
-        System.out.println(ANSI.YELLOW() + "Do you want to input another Formula? Y or N" + ANSI.RESET());
-
-        String inputForm = errorScanner.nextLine(); //Response for Question
-
-        if(inputForm.toUpperCase().equals("Y")){
-
-            System.out.print(ANSI.ESCAPE());  //ANSI ESCAPE CODE
-
-            Start start = new Start();
-
-        } else {
-
-            return;
-
+        if(responseString.equals("Y")){
+            console.clear();
+        Start start = new Start();
+        } else{
+            console.end();
         }
-
     }
 
+    public static String String(String Color, String msg){
+        console.color(Color, msg);
+        return scanner.nextLine().toUpperCase(Locale.ROOT);
+    }
 }

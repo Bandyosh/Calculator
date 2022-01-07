@@ -5,41 +5,36 @@ public class Start {
 
     public Start(){
 
-        System.out.println(ANSI.CYAN() + "Pick a formula: Quadratic (q), Pythagorean (p), Natural Log (l), or Calculate (c)");
+        String response = zForm.String(ANSI.CYAN(),"Pick a formula: Quadratic (q), Pythagorean (p), Natural Log (l), or Calculate (c)" );
 
-        Scanner myObj1 = new Scanner(System.in);
 
-        String response = myObj1.nextLine(); //Response for Question
-
-        System.out.println("");
-
-        if(response.toUpperCase().equals("QUADRATIC") || response.toUpperCase().equals("Q")){
+        if(response.equals("UADRATIC") || response.equals("Q")){
 
             Quad quad = new Quad();
 
         } else {
 
-            if(response.toUpperCase().equals("PYTHAGOREAN") || response.toUpperCase().equals("P")){
+            if(response.equals("PYTHAGOREAN") || response.equals("P")){
 
                 Pythag pythag = new Pythag();
 
             } else {
 
-                if(response.toUpperCase().equals("LOG") || response.toUpperCase().equals("L")){
+                if(response.equals("LOG") || response.equals("L")){
 
                     nLog log = new nLog();
 
                 } else{
 
-                    if(response.toUpperCase().equals("CALCULATE") || response.toUpperCase().equals("C")){
+                    if(response.equals("CALCULATE") || response.equals("C")){
 
                         zCalc calc = new zCalc();
 
                     } else {
 
-                        System.out.println(ANSI.RED() + "Invalid Input. \n" + ANSI.RESET());
+                        console.error("Invalid Input(s)");
 
-                        zForm.error();
+                        zForm.Restart();
 
 
 

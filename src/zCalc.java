@@ -4,83 +4,61 @@ public class zCalc {
 
     public zCalc(){
 
-        Scanner myObj = new Scanner(System.in);
 
-        System.out.println("What Operator Will You Use? ( +, -, *, / )");
 
-        String operator = myObj.nextLine(); //Response for Operator
+       String operator = zForm.String(ANSI.CYAN(), "What Operator Will You Use? ( +, -, *, / )");
+
 
         if(operator.equals("+") || operator.equals("-") || operator.equals("*") || operator.equals("/")){
 
+            console.log("Calculation Formula: A " + operator + " B");
 
 
-            System.out.println("Calculation Formula: A " + operator + " B");
+            Double a = zForm.Double(ANSI.orange(), "Enter A");
 
-            System.out.println("Enter A");
+            Double b = zForm.Double(ANSI.orange(), "Enter A");
 
-            String a = myObj.nextLine(); //Response for A
-
-            System.out.println("Enter B");
-
-            String b = myObj.nextLine(); //Response for B
-
-
-            try{
-
-                double intA = Double.parseDouble(a);// Parse String
-
-                double intB =  Double.parseDouble(b); //Parse String
 
                 if(operator.equals("-")){
 
-                    answer = this.subtract(intA, intB);
+                    answer = subtract(a, b);
 
-                    zForm.form("Calculation:", answer);
+                    console.color(ANSI.GREEN(), "Calculation: " + answer);
 
                 } else {
 
                     if(operator.equals("+")){
 
-                        answer = this.add(intA, intB);
+                        answer = add(a,b);
 
-                        zForm.form("Calculation:", answer);
+                        console.color(ANSI.GREEN(), "Calculation: " + answer);
 
                     } else {
                         if(operator.equals("/")){
 
-                            answer = this.divide(intA, intB);
+                            answer = divide(a, b);
 
-                            zForm.form("Calculation:", answer);
+                            console.color(ANSI.GREEN(),  "Calculation: " + answer);
 
                         } else {
 
-                            if(operator.equals("*")){
+                                answer = multiply(a, b);
 
-                                answer = this.multiply(intA, intB);
-
-                                zForm.form("Calculation:", answer);
-
-                            }
+                                console.color(ANSI.GREEN(), "Calculation: " +  answer);
 
                         }
 
                     }
 
                 }
+            zForm.Restart();
 
-            } catch (NumberFormatException e) { //Catch Statement if String isn't a double
-
-                System.out.println("\n" + ANSI.RED() + "Invalid Input(s)\n" + ANSI.RESET()); //If you didnt use a int and wrote something random
-
-                zForm.error();
-
-            }
 
         } else {
 
-            System.out.println("\n" + ANSI.RED() + "Invalid Input(s)\n" + ANSI.RESET()); //If you didnt use a int and wrote something random
+           console.error("Invalid Input(s)");
 
-            zForm.error();
+            zForm.Restart();
 
         }
     }

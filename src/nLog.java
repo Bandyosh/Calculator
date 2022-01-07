@@ -6,58 +6,41 @@ public class nLog {
 
     public nLog(){
 
-        Scanner myObj = new Scanner(System.in);
+       String response = zForm.String(ANSI.CYAN(),"Does your natural log require a fraction?");
 
-        System.out.println("Does your Natural Log Contain a Fraction? Y or N\n");
-        String response = myObj.nextLine(); //Response for A
+        if(response.equals("Y")){
 
-        if(response.toUpperCase().equals("Y")){
+            console.error("Cannot compute fractions.");
 
-            System.out.println("\n" + ANSI.RED() + "Cannot compute fractions.\n" + ANSI.RESET() + "\n");
-
-            zForm.error();
+            zForm.Restart();
 
         } else {
 
-            if(response.toUpperCase().equals("N")){
+            if(response.equals("N")){
 
-                System.out.println("\nNatural Log Formula: ln(a)\n");
+                console.log("Natural Log Formula: ln(a)");
 
-                System.out.println("Enter A\n");
+                double a = zForm.Int(ANSI.orange(), "Enter A"); //Response for A
 
-                String a = myObj.nextLine(); //Response for A
-
-                try{
-
-                    double intA = Double.parseDouble(a);// Parse String
-
-                    double log = Math.log(intA); //Does the Math
-
-                    answer = log; //Answer
+                    answer = Math.log(a);; //Answer
 
                     if(Double.isNaN(answer)){
 
-                        System.out.println("\n" + ANSI.RED() + "Invalid Input(s)" + ANSI.RESET()); //If you didnt use a int and wrote something random
+                        console.error( "Invalid Input(s)"); //If you didnt use a int and wrote something random
 
-                        zForm.error();
+                        zForm.Restart();
 
-                    } else
+                    } else{
 
-                        zForm.form("Natural Log: ln(" + intA + ") = ", answer);
-
-                } catch (NumberFormatException e) { //Catch Statement if String isn't a Int
-
-                    System.out.println("\n" + ANSI.RED() + "Invalid Input(s)\n" + ANSI.RESET()); //If you didnt use a int and wrote something random
-
-                    zForm.error();
-
+                       console.color(ANSI.GREEN(), "Natural Log: ln(" + a + ") = " + answer);
+                       zForm.Restart();
                 }
 
             } else {
 
-                System.out.println(ANSI.RED() + "Input Invalid." + ANSI.RESET());
+                console.error("Invalid Input(s)");
 
-                return;
+                zForm.Restart();
 
             }
 
